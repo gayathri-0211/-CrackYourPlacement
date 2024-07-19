@@ -1,0 +1,30 @@
+Node *flatten(Node *root) {
+   vector<int>arr;
+    
+    Node* r = root;
+    while(r!=NULL){
+        Node* c = r;
+        while(c!=NULL){
+            arr.push_back(c->data);
+            c=c->bottom;
+        }
+        r=r->next;
+    }
+    
+    Node* ans=NULL;
+    Node* t=NULL;
+    sort(arr.begin(),arr.end());
+    
+    for(int i=0;i<arr.size();i++){
+        Node* p = new Node(arr[i]);
+        if(ans==NULL){
+            ans=p;
+            t=p;
+        }else{
+            t->bottom=p;
+            t=t->bottom;
+        }
+    }
+    
+    return ans;
+}
